@@ -1,34 +1,41 @@
 
-    [SerializeField] public Transform[] transforms;
+    
 
-   public GameObject[] chaves;
+   
 
 
     public int gameLoaded;
     
     public bool deleted = false;
+    
+    //Int arrays so a can destroyed the object if he alread have been destroyed
     public int[] desativarSmoke;
     public int[] desativarMonstro;
     public int[] desativarChave;
     public int[] desativarFilme;
+    
+    //Arrays that a used to save the objects position
+    public GameObject[] chaves;
+    [SerializeField] public Transform[] transforms;
 
 
 
     private void Awake()
     {
-        
+        //loading the game after he started
         Load();
 
      
 
 
     }
-
+    
+//method to save the game
 public void Save()
     {
         gameLoaded = 1;
 
-
+        //A array to save the postions of the objects, the object have to been put on the inspector
         for (int i = 0; i < transforms.Length; i++)
         {
             PlayerPrefs.SetFloat("transformX" + i, transforms[i].position.x);
@@ -71,7 +78,8 @@ public void Save()
 
         Debug.Log("Saved");
     }
-
+    
+    //method to load the game
     public void Load()
     {
         gameLoaded = PlayerPrefs.GetInt("Game");
@@ -130,7 +138,7 @@ public void Save()
         }
 
 
-
+        //send me a message that the game was loaded
         Debug.Log("Loaded");
 
     }
